@@ -34,7 +34,7 @@ def enqueue_batch(file_paths: List[str]) -> None:
 		enqueue(fp)
 
 def clear_queue() -> None:
-	"""Clear the song queue"""
+	"""Clear the song queue."""
 	os.system("rhythmbox-client --clear-queue")
 
 def play() -> None:
@@ -91,7 +91,7 @@ def wait_until(time: str) -> None:
 	"""
 	Wait until the specified time.
 
-	`time` must be formatted with a leading zero if the hour is a single digit, formatted as HH:MM
+	`time` must be formatted with a leading zero if the hour is a single digit, formatted as HH:MM.
 
 	e.g.
 		08:30
