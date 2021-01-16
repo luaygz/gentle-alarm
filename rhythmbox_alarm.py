@@ -1,6 +1,8 @@
 import os
+import sys
 from time import sleep
 from random import shuffle
+from datetime import datetime
 
 from typing import List
 
@@ -85,15 +87,39 @@ def increase_volume_gradually(start_volume: float, end_volume: float, duration: 
 		set_volume(vol)
 		sleep(1)
 
+def wait_until(time: str) -> None:
+	"""
+	Wait until the specified time.
+
+	`time` must be formatted with a leading zero if the hour is a single digit.
+
+	e.g.
+		08:30
+		12:00
+		15:45
+	"""
+	while True:
+		now = datetime.now()
+		current_time = now.strftime("%H:%M")
+		if time == current_time:
+			break
+		sleep(1)
+
 # Volume range is 0.0 to 1.0
 start_volume = 0.5
 end_volume = 1.0
 duration = 200 # In seconds, how long it takes to go from `start_volume` to `end_volume`
 
+alarm_time = sys.argv[1]
+
 # Reset
 stop()
 set_volume(0.0)
 clear_queue()
+
+print("Alarm will ring at " + alarm_time + ".")
+wait_until(alarm_time)
+print("Alarm activated!")
 
 songs = get_songs()
 enqueue_batch(songs)
