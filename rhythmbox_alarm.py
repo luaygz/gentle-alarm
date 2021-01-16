@@ -1,5 +1,6 @@
 import os
 import sys
+import subprocess
 from time import sleep
 from random import shuffle
 from datetime import datetime
@@ -26,7 +27,8 @@ def get_songs() -> List[str]:
 
 def enqueue(file_path: str) -> None:
 	"""Enqueue a song."""
-	os.system("rhythmbox-client --enqueue \"" + file_path + "\"")
+	# os.system("rhythmbox-client --enqueue \"" + file_path + "\"")
+	subprocess.run(["rhythmbox-client", "--enqueue", file_path])
 
 def enqueue_batch(file_paths: List[str]) -> None:
 	"""Enqueue a list of songs."""
@@ -35,15 +37,18 @@ def enqueue_batch(file_paths: List[str]) -> None:
 
 def clear_queue() -> None:
 	"""Clear the song queue."""
-	os.system("rhythmbox-client --clear-queue")
+	# os.system("rhythmbox-client --clear-queue")
+	subprocess.run(["rhythmbox-client", "--clear-queue"])
 
 def play() -> None:
 	"""Start playing music."""
-	os.system("rhythmbox-client --play")
+	# os.system("rhythmbox-client --play")
+	subprocess.run(["rhythmbox-client", "--play"])
 
 def stop() -> None:
 	"""Stop playing music."""
-	os.system("rhythmbox-client --stop")
+	# os.system("rhythmbox-client --stop")
+	subprocess.run(["rhythmbox-client", "--stop"])
 
 def set_volume(level: float) -> None:
 	"""
@@ -52,7 +57,8 @@ def set_volume(level: float) -> None:
 	Arguments:
 		level (float): The volume level, a float between 0.0 and 1.0.
 	"""
-	os.system("rhythmbox-client --set-volume " + str(level))
+	# os.system("rhythmbox-client --set-volume " + str(level))
+	subprocess.run(["rhythmbox-client", "--set-volume", str(level)])
 
 def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	"""
@@ -91,6 +97,8 @@ def wait_until(time: str) -> None:
 	"""
 	Wait until the specified time.
 
+	Arguments:
+		time (str): A 24:00 	
 	`time` must be formatted with a leading zero if the hour is a single digit, formatted as HH:MM.
 
 	e.g.
