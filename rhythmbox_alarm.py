@@ -80,13 +80,9 @@ def increase_volume_slowly(start_volume: float, end_volume: float, duration: int
 		end_volume (float): The volume to end at.
 		duration (int): The number of seconds to take to transition from `start_volume` until `end_volume`.
 	"""
-	# n = 10 # Number of times to increment the volume
-	# delay = duration / n # In seconds
-	# volume_increments = get_increments(start_volume, end_volume, n)
 	volume_increments = get_increments(start_volume, end_volume, duration) # Increment once per second
 	for vol in volume_increments:
 		set_volume(vol)
-		# sleep(delay)
 		sleep(1)
 
 # Volume range is 0.0 to 1.0
