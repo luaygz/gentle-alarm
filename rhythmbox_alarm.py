@@ -91,7 +91,7 @@ def wait_until(time: str) -> None:
 	"""
 	Wait until the specified time.
 
-	`time` must be formatted with a leading zero if the hour is a single digit.
+	`time` must be formatted with a leading zero if the hour is a single digit, formatted as HH:MM
 
 	e.g.
 		08:30
