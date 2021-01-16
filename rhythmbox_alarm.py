@@ -110,7 +110,7 @@ start_volume = 0.5
 end_volume = 1.0
 duration = 200 # In seconds, how long it takes to go from `start_volume` to `end_volume`
 
-alarm_time = sys.argv[1] # A string formatted as HH:MM
+alarm_time = sys.argv[1] # A string formatted as HH:MM with a leading zero if the hour is a single digit
 
 # Reset
 stop()
