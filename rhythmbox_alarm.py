@@ -70,8 +70,8 @@ def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	Returns:
 		A list of `n` equally spaced numbers, between `lower` and `upper` (both inclusive).
 	"""
-	volume_increments = np.linspace(lower, upper, n).tolist()
-	return volume_increments
+	increments = np.linspace(lower, upper, n).tolist()
+	return increments
 
 def increase_volume_gradually(start_volume: float, end_volume: float, duration: int) -> None:
 	"""
