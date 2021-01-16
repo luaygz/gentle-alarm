@@ -73,7 +73,7 @@ def get_increments(lower: float, upper: float, n: int) -> List[float]:
 
 def increase_volume_gradually(start_volume: float, end_volume: float, duration: int) -> None:
 	"""
-	Increase the volume slowly from `start_volume` until `end_volume`, taking `duration` seconds to do so.
+	Increase the volume gradually from `start_volume` until `end_volume`, taking `duration` seconds to do so.
 
 	Arguments:
 		start_volume (float): The volume to start at.
