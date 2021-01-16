@@ -71,7 +71,7 @@ def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	volume_increments = np.linspace(lower, upper, n).tolist()
 	return volume_increments
 
-def increase_volume_slowly(start_volume: float, end_volume: float, duration: int) -> None:
+def increase_volume_gradually(start_volume: float, end_volume: float, duration: int) -> None:
 	"""
 	Increase the volume slowly from `start_volume` until `end_volume`, taking `duration` seconds to do so.
 
@@ -98,4 +98,4 @@ clear_queue()
 songs = get_songs()
 enqueue_batch(songs)
 play()
-increase_volume_slowly(start_volume, end_volume, duration)
+increase_volume_gradually(start_volume, end_volume, duration)
