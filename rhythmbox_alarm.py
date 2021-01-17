@@ -108,23 +108,24 @@ def wait_until(time: str) -> None:
 			break
 		sleep(1)
 
-# Volume range is 0.0 to 1.0
-start_volume = 0.5
-end_volume = 1.0
-duration = 200 # In seconds, how long it takes to go from `start_volume` to `end_volume`
+if __name__ == "__main__":
+	# Volume range is 0.0 to 1.0
+	start_volume = 0.5
+	end_volume = 1.0
+	duration = 200 # In seconds, how long it takes to go from `start_volume` to `end_volume`
 
-alarm_time = sys.argv[1] # A string formatted as HH:MM with a leading zero if the hour is a single digit
+	alarm_time = sys.argv[1] # A string formatted as HH:MM with a leading zero if the hour is a single digit
 
-# Reset
-stop()
-set_volume(0.0)
-clear_queue()
+	# Reset
+	stop()
+	set_volume(0.0)
+	clear_queue()
 
-print("Alarm will ring at " + alarm_time + ".")
-wait_until(alarm_time)
-print("Alarm activated!")
+	print("Alarm will ring at " + alarm_time + ".")
+	wait_until(alarm_time)
+	print("Alarm activated!")
 
-songs = get_songs()
-enqueue_batch(songs)
-play()
-increase_volume_gradually(start_volume, end_volume, duration)
+	songs = get_songs()
+	enqueue_batch(songs)
+	play()
+	increase_volume_gradually(start_volume, end_volume, duration)
