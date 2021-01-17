@@ -1,5 +1,6 @@
 import os
 import sys
+import argparse
 import subprocess
 from time import sleep
 from random import shuffle
@@ -115,6 +116,9 @@ def wait_until(time: str) -> None:
 		sleep(1)
 
 if __name__ == "__main__":
+	parser = argparse.ArgumentParser(description='An alarm clock that interfaces with Rhythmbox to play music.')
+	parser.add_argument("time", help="When to ring the alarm. Must be in 24:00 hour format with a leading zero if a the hour is a single digit e.g. 08:00, 13:30.")
+	args = parser.parse_args()
 	# Volume range is 0.0 to 1.0
 	start_volume = 0.5
 	end_volume = 1.0
