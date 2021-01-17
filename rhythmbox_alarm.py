@@ -121,13 +121,15 @@ def wait_until(time: str) -> None:
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='An alarm clock that interfaces with Rhythmbox to play music.')
-	parser.add_argument("time", help="When to ring the alarm. Must be in 24:00 hour format e.g. 8:00, 13:30.")
+	parser.add_argument("time", type=str,
+						help="When to ring the alarm. Must be in 24:00 hour format e.g. 8:00, 13:30.")
+	parser.add_argument("--start-volume", type=float, default=0.5, 
+						help="What volume to start at. A number between 0.0 and 1.0.")
+	parser.add_argument("--end-volume", type=float, default=1.0, 
+						help="What volume to end at. A number between 0.0 and 1.0. Must be greater than or equal to the start volume.")
+	parser.add_argument("--duration", type=int, default=60, 
+						help="How long to take to transition from the start to end volume, in seconds.")
 	args = parser.parse_args()
-	
-	# Volume range is 0.0 to 1.0
-	start_volume = 0.5
-	end_volume = 1.0
-	duration = 200 # In seconds, how long it takes to go from `start_volume` to `end_volume`
 
 	# Reset
 	stop()
@@ -141,4 +143,4 @@ if __name__ == "__main__":
 	songs = get_songs()
 	enqueue_batch(songs)
 	play()
-	increase_volume_gradually(start_volume, end_volume, duration)
+	increase_volume_gradually(args.start_volume, args.end_volume, args.duration)
