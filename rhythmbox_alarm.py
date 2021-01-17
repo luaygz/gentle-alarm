@@ -100,14 +100,18 @@ def wait_until(time: str) -> None:
 	Wait until the specified time.
 
 	Arguments:
-		time (str): A 24:00 	
-	`time` must be formatted with a leading zero if the hour is a single digit, formatted as HH:MM.
+		time (str): What time to wait until, in 24:00 hour format.
+	`time` must be in 24:00 hour format.
 
 	e.g.
-		08:30
+		8:30
 		12:00
 		15:45
 	"""
+	hour_has_two_digits = len(time.split(":")[0]) == 2
+	if not hour_has_two_digits:
+		time = "0" + time
+
 	while True:
 		now = datetime.now()
 		current_time = now.strftime("%H:%M")
@@ -117,7 +121,7 @@ def wait_until(time: str) -> None:
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='An alarm clock that interfaces with Rhythmbox to play music.')
-	parser.add_argument("time", help="When to ring the alarm. Must be in 24:00 hour format with a leading zero if a the hour is a single digit e.g. 08:00, 13:30.")
+	parser.add_argument("time", help="When to ring the alarm. Must be in 24:00 hour format e.g. 8:00, 13:30.")
 	args = parser.parse_args()
 	
 	# Volume range is 0.0 to 1.0
