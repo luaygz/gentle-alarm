@@ -18,8 +18,14 @@ def get_songs() -> List[str]:
 
 	Returns:
 		A list of song paths.
-	"""
-	all_songs = [os.path.join(root, song) for root, _, filenames in os.walk("/mnt/HDD/Music") for song in filenames if song.endswith(".mp3") or song.endswith(".flac")]
+	"""	
+	all_songs = []
+	for dir, _, filenames in os.walk("/mnt/HDD/Music"):
+		for filename in filenames:
+			filepath = os.path.join(dir, filename)
+			if filepath.endswith(".mp3") or filepath.endswith(".flac"):
+				all_songs.append(filepath)
+
 	taylor_swift_songs = [song for song in all_songs if "Taylor Swift" in song]
 	shuffle(taylor_swift_songs)
 
