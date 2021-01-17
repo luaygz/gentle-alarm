@@ -125,15 +125,13 @@ if __name__ == "__main__":
 	end_volume = 1.0
 	duration = 200 # In seconds, how long it takes to go from `start_volume` to `end_volume`
 
-	alarm_time = sys.argv[1] # A string formatted as HH:MM with a leading zero if the hour is a single digit
-
 	# Reset
 	stop()
 	set_volume(0.0)
 	clear_queue()
 
-	print("Alarm will ring at " + alarm_time + ".")
-	wait_until(alarm_time)
+	print("Alarm will ring at " + args.time + ".")
+	wait_until(args.time)
 	print("Alarm activated!")
 
 	songs = get_songs()
