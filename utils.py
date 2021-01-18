@@ -64,7 +64,12 @@ def wait_until(time: str) -> None:
 			break
 		sleep(1)
 
-def time_is_valid(time: str):
-	pattern = re.compile("^[0-9]{1,2}:[0-9]{1,2}$")
-	is_valid_time = pattern.match(string)
+def is_valid_time(time: str):
+	valid_24hr_time_regex = re.compile("^([0-1]?[0-9]|2[0-4]):[0-5][0-9]$")
+	is_valid_24hr_time = True if valid_24hr_time_regex.match(time) else False
+
+	valid_am_pm_time_regex = re.compile("^(0?[1-9]|1[1-2]):[0-5][0-9](am|pm|AM|PM)$")
+	is_valid_am_pm_time = True if valid_am_pm_time_regex.match(time) else False
+
+	is_valid_time = is_valid_24hr_time or is_valid_am_pm_time
 	return is_valid_time
