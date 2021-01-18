@@ -1,7 +1,6 @@
 import os
 import sys
 import argparse
-import subprocess
 from time import sleep
 from random import shuffle
 from datetime import datetime
@@ -34,6 +33,16 @@ def get_songs() -> List[str]:
 	shuffle(taylor_swift_songs)
 
 	return taylor_swift_songs
+
+def validate input(time: str, start_volume: float, end_volume: float, duration: int):
+	valid_time_regex = re.compile("^[0-9]{1,2}:[0-9]{1,2}$")
+	is_valid_time = True if pattern.match(time) else False
+	assert is_valid_time, "Time is not formatted correctly."
+	assert start_volume >= 0.0 and start_volume <= 1.0, "Start volume should be between 0 and 1."
+	assert end_volume >= 0.0 and end_volume <= 1.0, "End volume should be between 0 and 1."
+	assert start_volume <= end_volume, "Start volume should be less that or equal to end volume."
+	assert duration
+
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='An alarm clock that interfaces with Rhythmbox to play music.')
