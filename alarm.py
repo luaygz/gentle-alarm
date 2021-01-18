@@ -1,14 +1,9 @@
 import os
 import sys
 import argparse
-import subprocess
-from time import sleep
 from random import shuffle
-from datetime import datetime
 
 from typing import List
-
-import numpy as np
 
 from rhythmbox import *
 from utils import *
