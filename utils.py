@@ -26,9 +26,21 @@ def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	return increments
 
 def parse_time(time: str) -> str:
+	"""Convert time to 24:00 format."""
 	hour_has_two_digits = len(time.split(":")[0]) == 2
 	if not hour_has_two_digits:
 		time = "0" + time
+
+	if time.endswith("am") or time.endswith("AM"):
+		time = time[:-2] # Strip AM
+		if time.startswith("12"):
+			time = "00" + time[2:] # 12:00am is 00:00am
+	elif time.endswith("pm") or time.endswith("PM"):
+		time = time[:-2] # Strip PM
+		hour = int(time[:2])
+		hour_as_24 = hour + 12
+		time = str(hour_as_24) + time[2:]
+	
 	return time
 
 def wait_until(time: str) -> None:
