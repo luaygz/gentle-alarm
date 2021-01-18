@@ -31,9 +31,12 @@ def get_songs() -> List[str]:
 	return taylor_swift_songs
 
 def validate_input(time: str, start_volume: float, end_volume: float, duration: int) -> None:
-	valid_time_regex = re.compile("^([0-1]?[0-9]|2[0-4]):[0-5][0-9]$")
-	is_valid_time = True if valid_time_regex.match(time) else False
-	assert is_valid_time, "Time is invalid."
+	valid_24hr_time_regex = re.compile("^([0-1]?[0-9]|2[0-4]):[0-5][0-9]$")
+	is_valid_24hr_time = True if valid_24hr_time_regex.match(time) else False
+	valid_am_pm_time_regex = re.compile("^(0?[1-9]|1[1-2]):[0-5][0-9](am|pm|AM|PM)$")
+	is_valid_am_pm_time = True if valid_am_pm_time_regex.match(time) else False
+
+	assert is_valid_24hr_time or is_valid_am_pm_time, "Time is invalid."
 	assert start_volume >= 0.0 and start_volume <= 1.0, "Start volume should be between 0 and 1."
 	assert end_volume >= 0.0 and end_volume <= 1.0, "End volume should be between 0 and 1."
 	assert start_volume <= end_volume, "Start volume should be less that or equal to end volume."
@@ -52,6 +55,7 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 
 	validate_input(args.time, args.start_volume, args.end_volume, args.duration)
+	time = parse_time(args.time)
 
 	# Reset
 	stop()
@@ -59,7 +63,7 @@ if __name__ == "__main__":
 	clear_queue()
 
 	print("Alarm will ring at " + args.time + ".")
-	wait_until(args.time)
+	wait_until(time)
 	print("Alarm activated!")
 
 	songs = get_songs()
