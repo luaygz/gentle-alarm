@@ -1,3 +1,7 @@
+import re
+
+from typing import List
+
 def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	"""
 	Divide a number range into `n` equally spaced points, inclusive of both endpoints.
@@ -40,3 +44,8 @@ def wait_until(time: str) -> None:
 		if time == current_time:
 			break
 		sleep(1)
+
+def time_is_valid(time: str):
+	pattern = re.compile("^[0-9]{1,2}:[0-9]{1,2}$")
+	is_valid_time = pattern.match(string)
+	return is_valid_time
