@@ -60,3 +60,4 @@ if __name__ == "__main__":
 	enqueue_batch(songs)
 	play()
 	increase_volume_gradually(args.start_volume, args.end_volume, args.duration)
+	
