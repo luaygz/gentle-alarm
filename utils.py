@@ -66,7 +66,7 @@ def wait_until(time: str) -> None:
 			break
 		sleep(1)
 
-def is_valid_time(time: str):
+def is_valid_time(time: str) ->  bool:
 	"""
 	Check if time is a valid time string.
 
