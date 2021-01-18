@@ -1,6 +1,10 @@
 import re
+from time import sleep
+from datetime import datetime
 
 from typing import List
+
+import numpy as np
 
 def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	"""
@@ -21,6 +25,12 @@ def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	increments = np.linspace(lower, upper, n).tolist()
 	return increments
 
+def parse_time(time: str) -> str:
+	hour_has_two_digits = len(time.split(":")[0]) == 2
+	if not hour_has_two_digits:
+		time = "0" + time
+	return time
+
 def wait_until(time: str) -> None:
 	"""
 	Wait until the specified time.
@@ -34,10 +44,7 @@ def wait_until(time: str) -> None:
 		12:00
 		15:45
 	"""
-	hour_has_two_digits = len(time.split(":")[0]) == 2
-	if not hour_has_two_digits:
-		time = "0" + time
-
+	time = parse_time(time)
 	while True:
 		now = datetime.now()
 		current_time = now.strftime("%H:%M")
