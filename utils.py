@@ -73,3 +73,10 @@ def is_valid_time(time: str):
 
 	is_valid_time = is_valid_24hr_time or is_valid_am_pm_time
 	return is_valid_time
+
+def validate_input(time: str, start_volume: float, end_volume: float, duration: int) -> None:
+	assert is_valid_time(time), "Time is invalid."
+	assert start_volume >= 0.0 and start_volume <= 1.0, "Start volume should be between 0 and 1."
+	assert end_volume >= 0.0 and end_volume <= 1.0, "End volume should be between 0 and 1."
+	assert start_volume <= end_volume, "Start volume should be less that or equal to end volume."
+	assert duration >= 0, "Duration needs to be greater than or equal to zero."
