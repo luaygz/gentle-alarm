@@ -46,11 +46,6 @@ def wait_until(time: str) -> None:
 		sleep(1)
 
 def time_is_valid(time: str):
-	"""Check if time is formatted correctly."""
 	pattern = re.compile("^[0-9]{1,2}:[0-9]{1,2}$")
-	is_valid_time = True if pattern.match(time) else False
+	is_valid_time = pattern.match(string)
 	return is_valid_time
-
-def start_and_end_volumes_are_valid(start_time: float, end_time: float):
-	return start_time >= 0.0 and end_time <= 1.0 and start_time <= end_time
-
