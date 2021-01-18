@@ -1,7 +1,3 @@
-import subprocess
-
-from typing import List
-
 def enqueue(file_path: str) -> None:
 	"""Enqueue a song."""
 	subprocess.run(["rhythmbox-client", "--enqueue", file_path])
