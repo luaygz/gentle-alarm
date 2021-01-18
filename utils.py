@@ -26,7 +26,15 @@ def get_increments(lower: float, upper: float, n: int) -> List[float]:
 	return increments
 
 def parse_time(time: str) -> str:
-	"""Convert time to 24:00 format."""
+	"""
+	Convert time to 24:00 format.
+	
+	Arguments:
+		time (str): Time in either 24:00 hour format or am/pm e.g. 15:00, 8:30am, 5:30pm.
+
+	Returns:
+		Time in 24:00 format.
+	"""
 	hour_has_two_digits = len(time.split(":")[0]) == 2
 	if not hour_has_two_digits:
 		time = "0" + time
@@ -48,13 +56,7 @@ def wait_until(time: str) -> None:
 	Wait until the specified time.
 
 	Arguments:
-		time (str): What time to wait until, in 24:00 hour format.
-	`time` must be in 24:00 hour format.
-
-	e.g.
-		8:30
-		12:00
-		15:45
+		time (str): What time to wait until; must be in 24:00 hour format e.g. 8:00, 15:30.
 	"""
 	time = parse_time(time)
 	while True:
@@ -65,6 +67,18 @@ def wait_until(time: str) -> None:
 		sleep(1)
 
 def is_valid_time(time: str):
+	"""
+	Check if time is a valid time string.
+
+	Accepted formats are 24:00 format, or 12:00 hour format followed by am/pm/AM/PM.
+		e.g. 13:00, 5:30pm.
+
+	Arguments:
+		time (str): A time string.
+
+	Returns:
+		Whether the time string is in the correct format.
+	"""
 	valid_24hr_time_regex = re.compile("^([0-1]?[0-9]|2[0-4]):[0-5][0-9]$")
 	is_valid_24hr_time = True if valid_24hr_time_regex.match(time) else False
 
@@ -75,6 +89,7 @@ def is_valid_time(time: str):
 	return is_valid_time
 
 def validate_input(time: str, start_volume: float, end_volume: float, duration: int) -> None:
+	"""Validate input."""
 	assert is_valid_time(time), "Time is invalid."
 	assert start_volume >= 0.0 and start_volume <= 1.0, "Start volume should be between 0 and 1."
 	assert end_volume >= 0.0 and end_volume <= 1.0, "End volume should be between 0 and 1."
