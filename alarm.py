@@ -1,12 +1,10 @@
 import os
-import sys
 import argparse
-from random import shuffle
 
 from typing import List
 
-from music import MusicPlayer
 import utils
+from music import MusicPlayer
 
 
 def get_songs() -> List[str]:
