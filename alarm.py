@@ -5,8 +5,8 @@ from random import shuffle
 
 from typing import List
 
-from rhythmbox import *
-from utils import *
+import rhythmbox
+import utils
 
 
 def get_songs() -> List[str]:
@@ -42,20 +42,20 @@ if __name__ == "__main__":
 						help="How long to take to transition from the start to end volume, in seconds.")
 	args = parser.parse_args()
 
-	validate_input(args.time, args.start_volume, args.end_volume, args.duration)
-	time = parse_time(args.time)
+	utils.validate_input(args.time, args.start_volume, args.end_volume, args.duration)
+	time = utils.parse_time(args.time)
 
 	# Reset
-	stop()
-	set_volume(0.0)
-	clear_queue()
+	rhythmbox.stop()
+	rhythmbox.set_volume(0.0)
+	rhythmbox.clear_queue()
 
 	print("Alarm will ring at " + args.time + ".")
-	wait_until(time)
+	utils.wait_until(time)
 	print("Alarm activated!")
 
 	songs = get_songs()
-	enqueue_batch(songs)
-	play()
-	increase_volume_gradually(args.start_volume, args.end_volume, args.duration)
+	rhythmbox.enqueue_batch(songs)
+	rhythmbox.play()
+	rhythmbox.increase_volume_gradually(args.start_volume, args.end_volume, args.duration)
 	
