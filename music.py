@@ -13,6 +13,7 @@ class MusicPlayer:
 	Arguments:
 		songs (List[str]): A list of audio file paths that will play.
 		loop (bool): Whether to loop the playlist.
+		shuffle (bool): Whether to shuffle the playlist.
 	"""
 	def __init__(self, songs: List[str] = [], loop: bool = True, shuffle: bool = False):
 		self.instance = vlc.Instance()
