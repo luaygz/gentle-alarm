@@ -43,7 +43,6 @@ if __name__ == "__main__":
 	args = parser.parse_args()
 
 	utils.validate_input(args.time, args.start_volume, args.end_volume, args.duration)
-	time = utils.parse_time(args.time)
 
 	# Reset
 	rhythmbox.stop()
@@ -51,7 +50,7 @@ if __name__ == "__main__":
 	rhythmbox.clear_queue()
 
 	print("Alarm will ring at " + args.time + ".")
-	utils.wait_until(time)
+	utils.wait_until(args.time)
 	print("Alarm activated!")
 
 	songs = get_songs()
