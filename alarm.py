@@ -30,13 +30,13 @@ def get_songs() -> List[str]:
 	return taylor_swift_songs
 
 if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description='An alarm clock that interfaces with Rhythmbox to play music.')
+	parser = argparse.ArgumentParser(description='An alarm clock that gradually increases in volume to wake you up gently.')
 	parser.add_argument("time", type=str,
-						help="When to ring the alarm. Must be in 24:00 hour format e.g. 8:00, 13:30.")
+						help="When to ring the alarm in either 12:00 or 24:00 format e.g. 8:30, 13:00, 11:00am, 5:30pm.")
 	parser.add_argument("--start-volume", type=float, default=50, 
-						help="What volume to start at. A number between 0.0 and 1.0.")
+						help="What volume to start at. A number between 0 and 100.")
 	parser.add_argument("--end-volume", type=float, default=100, 
-						help="What volume to end at. A number between 0.0 and 1.0. Must be greater than or equal to the start volume.")
+						help="What volume to end at. A number between 0 and 100. Must be greater than or equal to the start volume.")
 	parser.add_argument("--duration", type=int, default=60, 
 						help="How long to take to transition from the start to end volume, in seconds.")
 	args = parser.parse_args()
