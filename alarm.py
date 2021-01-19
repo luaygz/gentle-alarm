@@ -37,6 +37,8 @@ if __name__ == "__main__":
 						help="What volume to end at. A number between 0 and 100. Must be greater than or equal to the start volume.")
 	parser.add_argument("--duration", type=int, default=60, 
 						help="How long to take to transition from the start to end volume, in seconds.")
+	parser.add_argument("--shuffle", action="store_true",
+						help="Whether to shuffle the playlist.")
 	args = parser.parse_args()
 
 	utils.validate_input(args.time, args.start_volume, args.end_volume, args.duration)
@@ -46,6 +48,6 @@ if __name__ == "__main__":
 	print("Alarm activated!")
 
 	songs = get_songs()
-	music_player = MusicPlayer(songs, shuffle=True)
+	music_player = MusicPlayer(songs, shuffle=args.shuffle)
 	music_player.play(args.start_volume, args.end_volume, args.duration)
 	music_player.join()
