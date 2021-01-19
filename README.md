@@ -1,12 +1,14 @@
 # rhythmbox-alarm
-An alarm that interfaces with the music app Rhythmbox.
+An alarm clock that gradually increases in volume to wake you up gently.
 
 ## Usage
-`python rhythmbox_alarm.py 8:00`
+Time can be in either 12:00 or 24:00 format.
 
-`python rhythmbox_alarm.py 15:00`
+`python alarm.py 8:00`
 
-`python rhythmbox_alarm.py 8:00am`
+`python alarm.py 15:00`
 
-`python rhythmbox_alarm.py 3:00pm`
+`python alarm.py 8:00am`
+
+`python alarm.py 3:00pm`
 
