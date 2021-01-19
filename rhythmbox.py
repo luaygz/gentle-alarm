@@ -1,8 +1,9 @@
+from time import sleep
 import subprocess
 
 from typing import List
 
-from utils import *
+import utils
 
 def enqueue(file_path: str) -> None:
 	"""Enqueue a song."""
@@ -43,7 +44,7 @@ def increase_volume_gradually(start_volume: float, end_volume: float, duration: 
 		end_volume (float): The volume to end at.
 		duration (int): The number of seconds to take to transition from `start_volume` until `end_volume`.
 	"""
-	volume_increments = get_increments(start_volume, end_volume, duration) # Increment once per second
+	volume_increments = utils.get_increments(start_volume, end_volume, duration) # Increment once per second
 	for vol in volume_increments:
 		set_volume(vol)
 		sleep(1)
