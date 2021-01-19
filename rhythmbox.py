@@ -1,5 +1,5 @@
-from time import sleep
 import subprocess
+from time import sleep
 
 from typing import List
 
