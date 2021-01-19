@@ -5,7 +5,7 @@ from random import shuffle
 
 from typing import List
 
-import rhythmbox
+from music import MusicPlayer
 import utils
 
 
@@ -26,7 +26,6 @@ def get_songs() -> List[str]:
 				all_songs.append(filepath)
 
 	taylor_swift_songs = [song for song in all_songs if "Taylor Swift" in song]
-	shuffle(taylor_swift_songs)
 
 	return taylor_swift_songs
 
@@ -34,27 +33,21 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='An alarm clock that interfaces with Rhythmbox to play music.')
 	parser.add_argument("time", type=str,
 						help="When to ring the alarm. Must be in 24:00 hour format e.g. 8:00, 13:30.")
-	parser.add_argument("--start-volume", type=float, default=0.5, 
+	parser.add_argument("--start-volume", type=float, default=50, 
 						help="What volume to start at. A number between 0.0 and 1.0.")
-	parser.add_argument("--end-volume", type=float, default=1.0, 
+	parser.add_argument("--end-volume", type=float, default=100, 
 						help="What volume to end at. A number between 0.0 and 1.0. Must be greater than or equal to the start volume.")
 	parser.add_argument("--duration", type=int, default=60, 
 						help="How long to take to transition from the start to end volume, in seconds.")
 	args = parser.parse_args()
 
 	utils.validate_input(args.time, args.start_volume, args.end_volume, args.duration)
-
-	# Reset
-	rhythmbox.stop()
-	rhythmbox.set_volume(0.0)
-	rhythmbox.clear_queue()
-
+	
 	print("Alarm will ring at " + args.time + ".")
 	utils.wait_until(args.time)
 	print("Alarm activated!")
 
 	songs = get_songs()
-	rhythmbox.enqueue_batch(songs)
-	rhythmbox.play()
-	rhythmbox.increase_volume_gradually(args.start_volume, args.end_volume, args.duration)
-	
+	music_player = MusicPlayer(songs, shuffle=True)
+	music_player.play(args.start_volume, args.end_volume, args.duration)
+	music_player.join()
