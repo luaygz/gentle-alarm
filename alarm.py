@@ -44,9 +44,10 @@ if __name__ == "__main__":
 	validate_input(args.time, args.start_volume, args.end_volume, args.duration)
 	
 	print("Alarm will ring at " + args.time + ".")
-	wait_until(args.time)
+	# wait_until(args.time)
 	print("Alarm activated!")
 
 	songs = get_songs()
-	music_player = MusicPlayer(songs, shuffle=not args.no_shuffle)
-	music_player.play(args.start_volume, args.end_volume, args.duration)
+	music_player = MusicPlayer()
+	music_player.enqueue_list(songs)
+	music_player.play(args.start_volume, args.end_volume, args.duration, shuffle=True)
