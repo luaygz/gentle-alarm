@@ -4,7 +4,7 @@ from datetime import datetime
 
 from typing import List, Tuple
 
-def get_songs(song_dirs: List[str]) -> List[str]:
+def get_songs(song_dir: str) -> List[str]:
 	"""
 	Get the list of songs to play.
 
@@ -12,12 +12,11 @@ def get_songs(song_dirs: List[str]) -> List[str]:
 		A list of song paths.
 	"""	
 	songs = []
-	for song_dir in song_dirs:
-		for dir, _, filenames in os.walk(song_dir):
-			for filename in filenames:
-				filepath = os.path.join(dir, filename)
-				if filepath.endswith(".mp3") or filepath.endswith(".flac"):
-					songs.append(filepath)
+	for dir, _, filenames in os.walk(song_dir):
+		for filename in filenames:
+			filepath = os.path.join(dir, filename)
+			if filepath.endswith(".mp3") or filepath.endswith(".flac"):
+				songs.append(filepath)
 	return songs
 
 def parse_time(time: str) -> Tuple[int, int]:

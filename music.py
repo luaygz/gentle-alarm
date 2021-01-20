@@ -35,9 +35,13 @@ class MusicPlayer:
 		for song in songs:
 			self.enqueue(song)
 
-	def enqueue_from_path(self, songs_dir: str) -> None:
-		songs = get_songs(songs_dir)
+	def enqueue_from_path(self, song_dir: str) -> None:
+		songs = get_songs(song_dir)
 		self.enqueue_list(songs)
+
+	def enqueue_from_paths(self, song_dirs: List[str]) -> None:
+		for song_dir in song_dirs:
+			self.enqueue_from_path(song_dir)
 
 	def set_volume(self, volume: int) -> None:
 		"""Set music volume"""
