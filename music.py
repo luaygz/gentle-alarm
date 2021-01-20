@@ -4,7 +4,7 @@ from time import sleep
 
 from typing import List
 
-import utils
+from utils import get_increments
 
 class MusicPlayer:
 	"""
@@ -50,7 +50,7 @@ class MusicPlayer:
 		"""
 		self.player.get_media_player().audio_set_volume(0)
 		self.player.play()
-		volume_increments = utils.get_increments(start_volume, end_volume, duration) # Increment once per second
+		volume_increments = get_increments(start_volume, end_volume, duration) # Increment once per second
 		for vol in volume_increments:
 			self.player.get_media_player().audio_set_volume(int(vol))
 			sleep(1)

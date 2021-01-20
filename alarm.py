@@ -3,7 +3,7 @@ import argparse
 
 from typing import List
 
-import utils
+from utils import validate_input, wait_until
 from music import MusicPlayer
 
 
@@ -41,10 +41,10 @@ if __name__ == "__main__":
 						help="Whether to shuffle the playlist, will shuffle by default if omitted.")
 	args = parser.parse_args()
 
-	utils.validate_input(args.time, args.start_volume, args.end_volume, args.duration)
+	validate_input(args.time, args.start_volume, args.end_volume, args.duration)
 	
 	print("Alarm will ring at " + args.time + ".")
-	utils.wait_until(args.time)
+	wait_until(args.time)
 	print("Alarm activated!")
 
 	songs = get_songs()
