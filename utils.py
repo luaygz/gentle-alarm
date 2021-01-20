@@ -4,7 +4,7 @@ from datetime import datetime
 
 from typing import List, Tuple
 
-def get_songs(songs_dir) -> List[str]:
+def get_songs(song_dirs: List[str]) -> List[str]:
 	"""
 	Get the list of songs to play.
 
@@ -12,11 +12,12 @@ def get_songs(songs_dir) -> List[str]:
 		A list of song paths.
 	"""	
 	songs = []
-	for dir, _, filenames in os.walk(songs_dir):
-		for filename in filenames:
-			filepath = os.path.join(dir, filename)
-			if filepath.endswith(".mp3") or filepath.endswith(".flac"):
-				songs.append(filepath)
+	for song_dir in song_dirs:
+		for dir, _, filenames in os.walk(song_dir):
+			for filename in filenames:
+				filepath = os.path.join(dir, filename)
+				if filepath.endswith(".mp3") or filepath.endswith(".flac"):
+					songs.append(filepath)
 	return songs
 
 def parse_time(time: str) -> Tuple[int, int]:
@@ -43,10 +44,11 @@ def wait_until(time: str) -> None:
 			break
 		sleep(1)
 
-def validate_input(time: str, songs_dir: str, start_volume: float, end_volume: float, duration: int) -> None:
+def validate_input(time: str, song_dirs: str, start_volume: float, end_volume: float, duration: int) -> None:
 	"""Validate input."""
 	assert parse_time(time), "Time is invalid."
-	assert os.path.exists(songs_dir), "Directory does not exist."
+	for song_dir in song_dirs:
+		assert os.path.exists(song_dir), "The directory " + song_dir + " does not exist."
 	assert start_volume >= 0 and start_volume <= 100, "Start volume should be between 0 and 1."
 	assert end_volume >= 0 and end_volume <= 100, "End volume should be between 0 and 1."
 	assert start_volume <= end_volume, "Start volume should be less that or equal to end volume."
