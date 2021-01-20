@@ -8,14 +8,8 @@ from typing import List
 from utils import get_increments
 
 class MusicPlayer:
-	"""
-	A music player with basic functionality.
-
-	Arguments:
-		songs (List[str]): A list of audio file paths that will play.
-		loop (bool): Whether to loop the playlist.
-	"""
-	def __init__(self, songs: List[str] = []):
+	"""A music player with basic functionality."""
+	def __init__(self):
 		self.instance = vlc.Instance()
 		self.playlist = self.instance.media_list_new()
 		self.player = self.instance.media_list_player_new()
