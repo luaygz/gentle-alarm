@@ -47,7 +47,7 @@ class MusicPlayer:
 			end_volume (int): The volume to end at.
 			duration (int): How long to take to transition from the start to end volume.
 		"""
-		# Generate equally spaced increments between `start_volume` and `end_volume`, not inclusive of `end_volume`
+		# Generate n equally spaced increments between `start_volume` and `end_volume`, not inclusive of `end_volume`
 		# e.g. start_volume = 0, end_volume = 100, n = 10 => [0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0]
 		volume_increments = np.linspace(start_volume, end_volume, duration+1).tolist()[:-1] # One increment per second
 		for vol in volume_increments:
