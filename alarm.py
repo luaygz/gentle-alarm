@@ -1,8 +1,6 @@
 import os
 import argparse
 
-from typing import List
-
 from utils import validate_input, wait_until
 from music import MusicPlayer
 
