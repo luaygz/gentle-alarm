@@ -6,6 +6,8 @@ from threading import Thread
 
 from typing import List
 
+from utils import get_songs
+
 class MusicPlayer:
 	"""A music player with basic functionality."""
 	def __init__(self):
@@ -32,6 +34,10 @@ class MusicPlayer:
 		"""
 		for song in songs:
 			self.enqueue(song)
+
+	def enqueue_from_path(self, songs_dir: str) -> None:
+		songs = get_songs(songs_dir)
+		self.enqueue_list(songs)
 
 	def set_volume(self, volume: int) -> None:
 		"""Set music volume"""

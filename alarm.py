@@ -6,22 +6,6 @@ from typing import List
 from utils import validate_input, wait_until
 from music import MusicPlayer
 
-
-def get_songs(songs_dir) -> List[str]:
-	"""
-	Get the list of songs to play.
-
-	Returns:
-		A list of song paths.
-	"""	
-	songs = []
-	for dir, _, filenames in os.walk(songs_dir):
-		for filename in filenames:
-			filepath = os.path.join(dir, filename)
-			if filepath.endswith(".mp3") or filepath.endswith(".flac"):
-				songs.append(filepath)
-	return songs
-
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='An alarm clock that gradually increases in volume to wake you up gently.')
 	parser.add_argument("time", type=str,
@@ -44,7 +28,6 @@ if __name__ == "__main__":
 	wait_until(args.time)
 	print("Alarm activated!")
 
-	songs = get_songs(args.songs_dir)
 	music_player = MusicPlayer()
-	music_player.enqueue_list(songs)
+	music_player.enqueue_from_path(args.songs_dir)
 	music_player.play(args.start_volume, args.end_volume, args.duration, shuffle=(not args.no_shuffle))

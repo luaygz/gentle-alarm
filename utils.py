@@ -2,7 +2,22 @@ import os
 from time import sleep
 from datetime import datetime
 
-from typing import Tuple
+from typing import List, Tuple
+
+def get_songs(songs_dir) -> List[str]:
+	"""
+	Get the list of songs to play.
+
+	Returns:
+		A list of song paths.
+	"""	
+	songs = []
+	for dir, _, filenames in os.walk(songs_dir):
+		for filename in filenames:
+			filepath = os.path.join(dir, filename)
+			if filepath.endswith(".mp3") or filepath.endswith(".flac"):
+				songs.append(filepath)
+	return songs
 
 def parse_time(time: str) -> Tuple[int, int]:
 	try:
