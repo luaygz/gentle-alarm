@@ -1,5 +1,6 @@
 import vlc
 import random
+import numpy as np
 from time import sleep
 from threading import Thread
 
@@ -46,17 +47,20 @@ class MusicPlayer:
 			end_volume (int): The volume to end at.
 			duration (int): How long to take to transition from the start to end volume.
 		"""
-		volume_increments = get_increments(start_volume, end_volume, duration) # Increment once per second
+		# Generate equally spaced increments between `start_volume` and `end_volume`, not inclusive of `end_volume`
+		# e.g. start_volume = 0, end_volume = 100, n = 10 => [0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0]
+		volume_increments = np.linspace(start_volume, end_volume, duration+1).tolist()[:-1] # One increment per second
 		for vol in volume_increments:
 			self.set_volume(int(vol))
 			sleep(1)
+		self.set_volume(int(end_volume))
 
 	def wait_until_done_playing(self) -> None:
 		"""Waits until playback finishes."""
 		while not self.player.get_media_player().get_state() == vlc.State.Ended:
 			sleep(1)
 
-	def play(self, start_volume: int = 50, end_volume: int = 100, duration: int = 60, shuffle: bool = False, loop: bool = True) -> None:
+	def play(self, start_volume: int = 100, end_volume: int = 100, duration: int = 60, shuffle: bool = False, loop: bool = True) -> None:
 		"""
 		Start playing music.
 

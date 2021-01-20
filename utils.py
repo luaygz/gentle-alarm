@@ -3,27 +3,6 @@ from datetime import datetime
 
 from typing import List, Tuple
 
-import numpy as np
-
-def get_increments(lower: float, upper: float, n: int) -> List[float]:
-	"""
-	Divide a number range into `n` equally spaced points, inclusive of both endpoints.
-
-	e.g. 
-		lower = 0.5, upper = 1.0, n = 5
-		-> [0.5, 0.625, 0.75, 0.875, 1.0]
-
-	Arguments:
-		lower (float): The lower bound.
-		upper (float): The upper bound.
-		n (int): The number of points.
-	
-	Returns:
-		A list of `n` equally spaced numbers, between `lower` and `upper` (both inclusive).
-	"""
-	increments = np.linspace(lower, upper, n).tolist()
-	return increments
-
 def parse_time(time: str) -> Tuple[int, int]:
 	try:
 		if time.lower().endswith(("am", "pm")):
