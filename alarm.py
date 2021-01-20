@@ -50,4 +50,3 @@ if __name__ == "__main__":
 	songs = get_songs()
 	music_player = MusicPlayer(songs, shuffle=not args.no_shuffle)
 	music_player.play(args.start_volume, args.end_volume, args.duration)
-	music_player.join()

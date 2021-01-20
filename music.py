@@ -54,8 +54,6 @@ class MusicPlayer:
 		for vol in volume_increments:
 			self.player.get_media_player().audio_set_volume(int(vol))
 			sleep(1)
-
-	def join(self) -> None:
-		"""Wait until playback finishes."""
+		# Wait until done playing
 		while not self.player.get_media_player().get_state() == vlc.State.Ended:
 			sleep(1)
