@@ -1,8 +1,8 @@
 import os
 import argparse
 
-from utils import validate_input, wait_until
 from music import MusicPlayer
+from utils import validate_input, wait_until
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='An alarm clock that gradually increases in volume to wake you up gently.')
