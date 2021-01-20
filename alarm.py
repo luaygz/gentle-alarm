@@ -1,4 +1,3 @@
-import os
 import argparse
 
 from music import MusicPlayer
