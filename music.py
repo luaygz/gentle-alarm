@@ -34,6 +34,7 @@ class MusicPlayer:
 			self.enqueue(song)
 
 	def set_volume(self, volume: int) -> None:
+		"""Set music volume"""
 		self.player.get_media_player().audio_set_volume(volume)
 
 	def gradually_increase_volume(self, start_volume: int, end_volume: int, duration: int) -> None:
