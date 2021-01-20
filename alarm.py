@@ -50,4 +50,4 @@ if __name__ == "__main__":
 	songs = get_songs()
 	music_player = MusicPlayer()
 	music_player.enqueue_list(songs)
-	music_player.play(args.start_volume, args.end_volume, args.duration, shuffle=True)
+	music_player.play(args.start_volume, args.end_volume, args.duration, shuffle=(not args.no_shuffle))
