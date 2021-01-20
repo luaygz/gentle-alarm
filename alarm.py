@@ -17,7 +17,7 @@ if __name__ == "__main__":
 	parser.add_argument("--duration", type=int, default=60, 
 						help="How long to take to transition from the start to end volume, in seconds. Default is 60.")
 	parser.add_argument("--no-shuffle", action="store_true",
-						help="Whether to shuffle the playlist, will shuffle by default if omitted.")
+						help="Whether to shuffle the playlist; by default will shuffle if omitted.")
 	args = parser.parse_args()
 
 	validate_input(args.time, args.songs_dir, args.start_volume, args.end_volume, args.duration)
