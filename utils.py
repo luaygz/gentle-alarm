@@ -1,7 +1,7 @@
 from time import sleep
 from datetime import datetime
 
-from typing import List, Tuple
+from typing import Tuple
 
 def parse_time(time: str) -> Tuple[int, int]:
 	try:

@@ -6,8 +6,6 @@ from threading import Thread
 
 from typing import List
 
-from utils import get_increments
-
 class MusicPlayer:
 	"""A music player with basic functionality."""
 	def __init__(self):
