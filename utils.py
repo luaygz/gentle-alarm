@@ -1,3 +1,4 @@
+import os
 from time import sleep
 from datetime import datetime
 
@@ -27,9 +28,10 @@ def wait_until(time: str) -> None:
 			break
 		sleep(1)
 
-def validate_input(time: str, start_volume: float, end_volume: float, duration: int) -> None:
+def validate_input(time: str, songs_dir: str, start_volume: float, end_volume: float, duration: int) -> None:
 	"""Validate input."""
 	assert parse_time(time), "Time is invalid."
+	assert os.path.exists(songs_dir), "Directory does not exist."
 	assert start_volume >= 0 and start_volume <= 100, "Start volume should be between 0 and 1."
 	assert end_volume >= 0 and end_volume <= 100, "End volume should be between 0 and 1."
 	assert start_volume <= end_volume, "Start volume should be less that or equal to end volume."

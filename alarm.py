@@ -38,7 +38,7 @@ if __name__ == "__main__":
 						help="Whether to shuffle the playlist, will shuffle by default if omitted.")
 	args = parser.parse_args()
 
-	validate_input(args.time, args.start_volume, args.end_volume, args.duration)
+	validate_input(args.time, args.dir, args.start_volume, args.end_volume, args.duration)
 	
 	print("Alarm will ring at " + args.time + ".")
 	wait_until(args.time)
