@@ -1,4 +1,5 @@
 import os
+import argparse
 from time import sleep
 from datetime import datetime
 
@@ -43,12 +44,30 @@ def wait_until(time: str) -> None:
 			break
 		sleep(1)
 
-def validate_input(time: str, song_dirs: str, start_volume: float, end_volume: float, duration: int) -> None:
-	"""Validate input."""
-	assert parse_time(time), "Time is invalid."
-	for song_dir in song_dirs:
-		assert os.path.exists(song_dir), "The directory " + song_dir + " does not exist."
-	assert start_volume >= 0 and start_volume <= 100, "Start volume should be between 0 and 1."
-	assert end_volume >= 0 and end_volume <= 100, "End volume should be between 0 and 1."
-	assert start_volume <= end_volume, "Start volume should be less that or equal to end volume."
-	assert duration >= 0, "Duration needs to be greater than or equal to zero."
+def is_valid_time(time: str) -> str:
+	if not parse_time(time):
+		raise argparse.ArgumentTypeError("{} is an invalid time.".format(time))
+	return time
+
+def is_valid_dir(dir: str) -> str:
+	if not os.path.exists(dir):
+		raise argparse.ArgumentTypeError("The directory {} does not exist.".format(dir))
+	return dir
+
+def is_valid_start_volume(start_volume: int) -> int:
+	start_volume = int(start_volume)
+	if start_volume < 0 or start_volume > 100:
+		raise argparse.ArgumentTypeError("The start volume must be between 0 and 100.")
+	return start_volume
+
+def is_valid_end_volume(end_volume: int) -> int:
+	end_volume = int(end_volume)
+	if end_volume < 0 or end_volume > 100:
+		raise argparse.ArgumentTypeError("The end volume must be between 0 and 100.")
+	return end_volume
+
+def is_valid_duration(duration: int) -> int:
+	duration = int(duration)
+	if duration < 0:
+		raise argparse.ArgumentTypeError("The duration must be zero or more.")
+	return duration
