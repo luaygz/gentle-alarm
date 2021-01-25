@@ -71,9 +71,9 @@ class MusicPlayer:
 		Arguments:
 			start_volume (int): The volume to start at.
 			end_volume (int): The volume to end at.
-			duration (int): How long to take to transition from the start to end volume.
-			shuffle (bool): Whether to play random songs. Will run indefinitely if true, else will loop the playlist if loop is true.
-			loop (bool): Whether to loop the playlist. Only applies if shuffle=False.
+			duration (int): How long to take to transition from the start to end volume in seconds.
+			shuffle (bool): Whether to play songs randomly. Will run indefinitely if true, otherwise will loop all songs if `loop` is true.
+			loop (bool): Whether to loop the playlist. Only used if `shuffle` is false.
 		"""
 		self.set_volume(0)
 		Thread(target=self.gradually_increase_volume, args=(start_volume, end_volume, duration)).start()
