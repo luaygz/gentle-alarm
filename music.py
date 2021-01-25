@@ -32,7 +32,7 @@ class MusicPlayer:
 		Arguments:
 			dir (str): The dir that contains the songs to enqueue.
 		"""
-		songs = get_songs(dir)
+		songs = list_songs(dir)
 		for song in songs:
 			self.enqueue(song)
 

@@ -8,7 +8,7 @@ from typing import List, Tuple
 def is_song(path: str) -> bool:
 	return path.endswith(".mp3") or path.endswith(".flac"):
 
-def get_songs(song_dir: str) -> List[str]:
+def list_songs(song_dir: str) -> List[str]:
 	"""
 	Get the list of songs to play.
 
