@@ -27,10 +27,10 @@ class MusicPlayer:
 
 	def enqueue_dir(self, dir: str) -> None:
 		"""
-		Enqueue all the songs in a dir.
+		Enqueue all the songs in a directory.
 
 		Arguments:
-			dir (str): The dir that contains the songs to enqueue.
+			dir (str): The directory that contains the songs to enqueue.
 		"""
 		songs = list_songs(dir)
 		for song in songs:
