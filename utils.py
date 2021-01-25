@@ -8,7 +8,7 @@ from typing import List, Tuple
 def is_song(path: str) -> bool:
 	return path.endswith(".mp3") or path.endswith(".flac"):
 
-def list_songs(song_dir: str) -> List[str]:
+def list_songs(root_dir: str) -> List[str]:
 	"""
 	Get a list of all songs in a directory.
 
@@ -18,11 +18,11 @@ def list_songs(song_dir: str) -> List[str]:
 		A list of song paths.
 	"""	
 	songs = []
-	for dir, _, filenames in os.walk(song_dir):
-		for filename in filenames:
-			filepath = os.path.join(dir, filename)
-			if is_song(filepath):
-				songs.append(filepath)
+	for dir, _, files in os.walk(root_dir):
+		for file in files:
+			if is_song(file):
+				path = os.path.join(dir, file)
+				songs.append(path)
 	return songs
 
 def parse_time(time: str) -> Tuple[int, int]:
