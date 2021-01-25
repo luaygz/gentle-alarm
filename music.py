@@ -23,7 +23,7 @@ class MusicPlayer:
 		Enqueue a song.
 
 		Arguments:
-			song (str): A song file path.
+			song (str): A file path.
 		"""
 		self.playlist.add_media(self.instance.media_new(song))
 
@@ -31,16 +31,21 @@ class MusicPlayer:
 		"""
 		Enqueue all the songs in a directory.
 
+		Will enqueue songs recursively.
+
 		Arguments:
 			dir (str): The directory that contains the songs to enqueue.
 		"""
-		songs = list_songs(dir)
+		songs = list_songs(dir) # Lists songs recursively
 		for song in songs:
 			self.enqueue(song)
 
 	def set_volume(self, volume: int) -> None:
 		"""
 		Set music volume.
+
+		Arguments:
+			volume (int): The volume to set.
 		"""
 		self.player.get_media_player().audio_set_volume(volume)
 
@@ -53,7 +58,7 @@ class MusicPlayer:
 			end_volume (int): The volume to end at.
 			duration (int): How long to take to transition from the start to end volume.
 		"""
-		# Generate points at regular intervals between `start_volume` and `end_volume`, omitting `end_volume`
+		# Generate n+1 points at regular intervals between `start_volume` and `end_volume`, then omit `end_volume`.
 		# e.g. start_volume = 0, end_volume = 100, n = 10 => [0.0, 10.0, 20.0, 30.0, 40.0, 50.0, 60.0, 70.0, 80.0, 90.0]
 		volume_increments = np.linspace(start_volume, end_volume, duration+1).tolist()[:-1] # One increment per second
 		for vol in volume_increments:
@@ -63,7 +68,7 @@ class MusicPlayer:
 
 	def wait_until_done_playing(self) -> None:
 		"""
-		Waits until playback finishes.
+		Wait until playback finishes.
 		"""
 		while not self.player.get_media_player().get_state() == vlc.State.Ended:
 			sleep(1)
@@ -74,12 +79,14 @@ class MusicPlayer:
 
 		Gradually increases volume from `start_volume` to `end_volume` over the course of `duration` seconds.
 
+		If `shuffle` is true, will run indefinitely. Otherwise will loop the playlist if `loop` is true.
+
 		Arguments:
 			start_volume (int): The volume to start at.
 			end_volume (int): The volume to end at.
 			duration (int): How long to take to transition from the start to end volume in seconds.
-			shuffle (bool): Whether to play songs randomly. Will run indefinitely if true, otherwise will loop all songs if `loop` is true.
-			loop (bool): Whether to loop the playlist. Only used if `shuffle` is false.
+			shuffle (bool): Whether to play songs randomly.
+			loop (bool): Whether to loop the playlist.
 		"""
 		self.set_volume(0)
 		Thread(target=self.gradually_increase_volume, args=(start_volume, end_volume, duration)).start()
