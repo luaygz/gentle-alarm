@@ -34,4 +34,5 @@ if __name__ == "__main__":
 	music_player = MusicPlayer()
 	for dir in args.song_dirs:
 		music_player.enqueue_dir(dir)
-	music_player.play(args.start_volume, args.end_volume, args.duration, shuffle=(not args.no_shuffle))
+
+	music_player.play(start_volume=args.start_volume, end_volume=args.end_volume, duration=args.duration, shuffle=(not args.no_shuffle))
