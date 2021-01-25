@@ -6,7 +6,7 @@ from threading import Thread
 
 from typing import List
 
-from utils import get_songs
+from utils import list_songs
 
 class MusicPlayer:
 	"""A music player with basic functionality."""
