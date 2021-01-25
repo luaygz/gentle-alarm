@@ -10,7 +10,9 @@ def is_song(path: str) -> bool:
 
 def list_songs(song_dir: str) -> List[str]:
 	"""
-	Get the list of songs to play.
+	Get a list of all songs in a directory.
+
+	Recursively checks subdirectories.
 
 	Returns:
 		A list of song paths.
