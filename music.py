@@ -9,7 +9,9 @@ from typing import List
 from utils import list_songs
 
 class MusicPlayer:
-	"""A music player with basic functionality."""
+	"""
+	A music player with basic functionality.
+	"""
 	def __init__(self):
 		self.instance = vlc.Instance()
 		self.playlist = self.instance.media_list_new()
