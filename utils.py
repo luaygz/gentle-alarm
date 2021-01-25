@@ -52,7 +52,7 @@ def wait_until(time: str) -> None:
 	Wait until the specified time.
 
 	Arguments:
-		time (str): What time to wait until e.g. 8:00, 15:30, 8:00am, 3:30pm.
+		time (str): What time to wait until.
 	"""
 	hour, minute = parse_time(time)
 	while True:
