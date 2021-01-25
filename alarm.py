@@ -20,8 +20,8 @@ if __name__ == "__main__":
 						help="What volume to end at. A number between 0 and 100. Must be greater than or equal to the start volume. Default is 100.")
 	parser.add_argument("--duration", type=is_valid_duration, default=60, 
 						help="How long to take to transition from the start to end volume, in seconds. Default is 60.")
-	parser.add_argument("--no-shuffle", action="store_true",
-						help="Whether to shuffle the playlist; by default will shuffle if omitted.")
+	parser.add_argument("--shuffle", action="store_true",
+						help="Whether to shuffle the playlist.")
 	args = parser.parse_args()
 
 	if args.start_volume > args.end_volume:
@@ -35,4 +35,4 @@ if __name__ == "__main__":
 	for dir in args.song_dirs:
 		music_player.enqueue_dir(dir)
 
-	music_player.play(start_volume=args.start_volume, end_volume=args.end_volume, duration=args.duration, shuffle=(not args.no_shuffle))
+	music_player.play(start_volume=args.start_volume, end_volume=args.end_volume, duration=args.duration, shuffle=args.shuffle)
