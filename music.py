@@ -37,7 +37,9 @@ class MusicPlayer:
 			self.enqueue(song)
 
 	def set_volume(self, volume: int) -> None:
-		"""Set music volume"""
+		"""
+		Set music volume.
+		"""
 		self.player.get_media_player().audio_set_volume(volume)
 
 	def gradually_increase_volume(self, start_volume: int, end_volume: int, duration: int) -> None:
@@ -58,7 +60,9 @@ class MusicPlayer:
 		self.set_volume(int(end_volume))
 
 	def wait_until_done_playing(self) -> None:
-		"""Waits until playback finishes."""
+		"""
+		Waits until playback finishes.
+		"""
 		while not self.player.get_media_player().get_state() == vlc.State.Ended:
 			sleep(1)
 
