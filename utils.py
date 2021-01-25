@@ -5,6 +5,9 @@ from datetime import datetime
 
 from typing import List, Tuple
 
+def is_song(path: str) -> bool:
+	return path.endswith(".mp3") or path.endswith(".flac"):
+
 def get_songs(song_dir: str) -> List[str]:
 	"""
 	Get the list of songs to play.
@@ -16,7 +19,7 @@ def get_songs(song_dir: str) -> List[str]:
 	for dir, _, filenames in os.walk(song_dir):
 		for filename in filenames:
 			filepath = os.path.join(dir, filename)
-			if filepath.endswith(".mp3") or filepath.endswith(".flac"):
+			if is_song(filepath):
 				songs.append(filepath)
 	return songs
 
