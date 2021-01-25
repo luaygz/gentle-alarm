@@ -34,7 +34,7 @@ class MusicPlayer:
 		Arguments:
 			dir (str): The directory that contains the songs to enqueue.
 		"""
-		songs = list_songs(dir) # Lists songs recursively
+		songs = list_songs(dir) # Recursive
 		for song in songs:
 			self.enqueue(song)
 
