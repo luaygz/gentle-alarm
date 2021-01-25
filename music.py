@@ -25,23 +25,16 @@ class MusicPlayer:
 		"""
 		self.playlist.add_media(self.instance.media_new(song))
 
-	def enqueue_list(self, songs: List[str]) -> None:
+	def enqueue_dir(self, dir: str) -> None:
 		"""
-		Enqueue a list of songs.
+		Enqueue all the songs in a dir.
 
 		Arguments:
-			songs (List[str]): A list of song file paths.
+			dir (str): The dir that contains the songs to enqueue.
 		"""
+		songs = get_songs(dir)
 		for song in songs:
 			self.enqueue(song)
-
-	def enqueue_from_path(self, song_dir: str) -> None:
-		songs = get_songs(song_dir)
-		self.enqueue_list(songs)
-
-	def enqueue_from_paths(self, song_dirs: List[str]) -> None:
-		for song_dir in song_dirs:
-			self.enqueue_from_path(song_dir)
 
 	def set_volume(self, volume: int) -> None:
 		"""Set music volume"""

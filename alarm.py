@@ -32,5 +32,6 @@ if __name__ == "__main__":
 	print("Alarm activated!")
 
 	music_player = MusicPlayer()
-	music_player.enqueue_from_paths(args.song_dirs)
+	for dir in args.song_dirs:
+		music_player.enqueue_dir(dir)
 	music_player.play(args.start_volume, args.end_volume, args.duration, shuffle=(not args.no_shuffle))
