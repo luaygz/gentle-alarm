@@ -38,9 +38,9 @@ def parse_time(time: str) -> Tuple[int, int]:
 	"""
 	try:
 		if time.lower().endswith(("am", "pm")):
-			time_dt = datetime.strptime(time, '%I:%M%p')
+			time_dt = datetime.strptime(time, '%I:%M%p') # 12:00 format
 		else:
-			time_dt = datetime.strptime(time, '%H:%M')
+			time_dt = datetime.strptime(time, '%H:%M') # 24:00 format
 		return time_dt.hour, time_dt.minute
 	except ValueError:
 		return False
