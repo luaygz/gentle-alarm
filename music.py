@@ -23,7 +23,7 @@ class MusicPlayer:
 		Enqueue a song.
 
 		Arguments:
-			song (str): A file path.
+			song (str): The song's file path.
 		"""
 		self.playlist.add_media(self.instance.media_new(song))
 
