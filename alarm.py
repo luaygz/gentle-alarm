@@ -29,7 +29,7 @@ if __name__ == "__main__":
 	
 	print("Alarm will ring at " + args.time + ".")
 	wait_until(args.time)
-	print("Alarm activated!")
+	print("Alarm ringing!")
 
 	music_player = MusicPlayer()
 	for dir in args.song_dirs:
