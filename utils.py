@@ -5,8 +5,8 @@ from datetime import datetime
 
 from typing import List, Tuple
 
-def is_song(path: str) -> bool:
-	return path.endswith(".mp3") or path.endswith(".flac")
+def is_song(file: str) -> bool:
+	return file.endswith(".mp3") or file.endswith(".flac")
 
 def list_songs(root_dir: str) -> List[str]:
 	"""
