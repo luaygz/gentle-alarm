@@ -30,6 +30,8 @@ def parse_time(time: str) -> Tuple[int, int]:
 	The time string can be either 12:00 or 24:00 hour format. If 12:00 format is used, whether AM or PM must be specified.
 		e.g. 8:00, 15:30, 8:00am, 3:30pm.
 
+	The AM and PM is case insensitive.
+
 	Arguments:
 		time (str): The time to parse.
 
