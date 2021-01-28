@@ -36,7 +36,7 @@ def parse_time(time: str) -> Tuple[int, int]:
 		time (str): The time to parse.
 
 	Returns:
-		hour (str), minute (str)
+		hour (str), minute (str) or False if time is incorrectly formatted
 	"""
 	try:
 		if time.lower().endswith(("am", "pm")):
