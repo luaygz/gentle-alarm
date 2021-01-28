@@ -91,10 +91,10 @@ class MusicPlayer:
 		if shuffle:
 			while True:
 				i = random.randrange(0, len(self.playlist))
-				self.player.play_item_at_index(i)
+				self.player.play_item_at_index(i) # Runs asynchronously
 				self.wait_until_done_playing()
 		else:
 			if loop:
 				self.player.set_playback_mode(vlc.PlaybackMode.loop)
-			self.player.play()
+			self.player.play() # Runs asynchronously
 			self.wait_until_done_playing()
