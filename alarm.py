@@ -11,7 +11,7 @@ from utils import is_valid_start_volume
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description='An alarm clock that gradually increases in volume to wake you up gently.')
 	parser.add_argument("time", type=is_valid_time,
-						help="When to ring the alarm in either 12:00 or 24:00 format e.g. 8:30, 13:00, 11:00am, 5:30pm.")
+						help="When to ring the alarm, in either 12:00 or 24:00 format e.g. 8:30, 13:00, 11:00am, 5:30pm.")
 	parser.add_argument("song_dirs", nargs='+', type=is_valid_dir,
 						help="One or more directory paths that contains your music.")
 	parser.add_argument("--start-volume", type=is_valid_start_volume, default=50, 
