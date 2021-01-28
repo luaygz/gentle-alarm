@@ -29,7 +29,7 @@ class MusicPlayer:
 
 	def enqueue_dir(self, dir: str) -> None:
 		"""
-		Enqueue all the songs in a directory recursively.
+		Enqueue all songs in a directory recursively.
 
 		Arguments:
 			dir (str): The directory that contains the songs to enqueue.
