@@ -28,6 +28,7 @@ if __name__ == "__main__":
 		raise argparse.ArgumentTypeError("The start volume must be less than or equal to the end volume.")
 	
 	print("Alarm will ring at " + args.time + ".")
+	
 	wait_until(args.time)
 	
 	print("Alarm ringing!")
