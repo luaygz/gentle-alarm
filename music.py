@@ -80,8 +80,8 @@ class MusicPlayer:
 		If `shuffle` is true, will run indefinitely. Otherwise will loop the playlist if `loop` is true.
 
 		Arguments:
-			start_volume (int): The volume to start at.
-			end_volume (int): The volume to end at.
+			start_volume (int): The volume to start at, between 0 and 100.
+			end_volume (int): The volume to end at, between 0 and 100.
 			duration (int): How long to take to transition from the start to end volume in seconds.
 			shuffle (bool): Whether to play songs randomly.
 			loop (bool): Whether to loop the playlist.
