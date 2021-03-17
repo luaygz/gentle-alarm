@@ -52,8 +52,8 @@ class MusicPlayer:
 		Gradually increase volume from `start_volume` to `end_volume` over the course of `duration` seconds.
 
 		Arguments:
-			start_volume (int): The volume to start at.
-			end_volume (int): The volume to end at.
+			start_volume (int): The volume to start at, between 0 and 100.
+			end_volume (int): The volume to end at, between 0 and 100.
 			duration (int): How long to take to transition from the start to end volume.
 		"""
 		# Generate n+1 points at regular intervals between `start_volume` and `end_volume`, then omit `end_volume`.
